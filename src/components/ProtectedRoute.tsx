@@ -1,0 +1,12 @@
+import { Navigate } from 'react-router-dom';
+import { getAuth } from '../lib/auth';
+
+export function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const auth = getAuth();
+
+  if (!auth) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+}
