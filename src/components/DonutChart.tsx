@@ -1,5 +1,12 @@
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
-import { formatCurrency, formatPercent } from '../lib/utils';
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Legend,
+  Tooltip,
+} from "recharts";
+import { formatCurrency, formatPercent } from "../lib/utils";
 
 interface DonutChartProps {
   data: Array<{
@@ -10,7 +17,7 @@ interface DonutChartProps {
   title: string;
 }
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884D8"];
 
 export function DonutChart({ data, title }: DonutChartProps) {
   const total = data.reduce((sum, item) => sum + item.value, 0);
@@ -29,14 +36,19 @@ export function DonutChart({ data, title }: DonutChartProps) {
             fill="#8884d8"
             paddingAngle={5}
             dataKey="value"
-            label={({ name, value }) => `${name} (${formatPercent(value / total)})`}
+            label={({ name, value }) =>
+              `${name} (${formatPercent(value / total)})`
+            }
           >
             {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={entry.color || COLORS[index % COLORS.length]} />
+              <Cell
+                key={`cell-${index}`}
+                fill={entry.color || COLORS[index % COLORS.length]}
+              />
             ))}
           </Pie>
           <Tooltip
-            formatter={(value: number) => [formatCurrency(value), 'Value']}
+            formatter={(value: number) => [formatCurrency(value), "Value"]}
           />
           <Legend />
         </PieChart>
