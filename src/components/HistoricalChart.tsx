@@ -46,6 +46,7 @@ export function HistoricalChart({
 
           <YAxis tickFormatter={(value) => formatCurrency(value)} />
           <Tooltip
+            isAnimationActive={isAnimationActive}
             formatter={(value: number) => [
               formatCurrency(value),
               "Portfolio Value",

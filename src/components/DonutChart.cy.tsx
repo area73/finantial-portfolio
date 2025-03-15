@@ -7,7 +7,7 @@ describe("DonutChart", () => {
       { name: "B", value: 200, color: "#00C49F" },
       { name: "C", value: 300, color: "#FF8042" },
     ];
-
+    cy.viewport(550, 450);
     cy.mount(
       <div style={{ width: "400px", height: "400px" }}>
         <DonutChart data={data} title="Test Chart" isAnimationActive={false} />
