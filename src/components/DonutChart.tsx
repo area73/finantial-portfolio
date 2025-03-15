@@ -15,11 +15,16 @@ interface DonutChartProps {
     color: string;
   }>;
   title: string;
+  isAnimationActive?: boolean;
 }
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884D8"];
 
-export function DonutChart({ data, title }: DonutChartProps) {
+export function DonutChart({
+  data,
+  title,
+  isAnimationActive = true,
+}: DonutChartProps) {
   const total = data.reduce((sum, item) => sum + item.value, 0);
 
   return (
@@ -28,6 +33,7 @@ export function DonutChart({ data, title }: DonutChartProps) {
       <ResponsiveContainer width="100%" height="100%">
         <PieChart width={100} height={100}>
           <Pie
+            isAnimationActive={isAnimationActive}
             data={data}
             cx="50%"
             cy="50%"

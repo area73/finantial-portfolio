@@ -16,8 +16,10 @@
 
 // Import commands.js using ES2015 syntax:
 import "./commands";
-
+import { addCompareSnapshotCommand } from "cypress-visual-regression/dist/command";
 import { mount } from "cypress/react";
+import "../../src/index.css";
+import "./overrides.css";
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
@@ -32,6 +34,6 @@ declare global {
 }
 
 Cypress.Commands.add("mount", mount);
-
+addCompareSnapshotCommand();
 // Example use:
 // cy.mount(<MyComponent />)

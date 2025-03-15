@@ -14,8 +14,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": false,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "jsx": "react-jsx"
   },
-  "include": ["**/*.ts", "cypress.config.ts"],
+  "include": ["**/*.ts", "**/*.tsx", "cypress.config.ts"],
   "exclude": ["node_modules"]
 }

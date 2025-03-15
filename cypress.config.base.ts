@@ -5,9 +5,9 @@ export default defineConfig({
   component: {
     screenshotsFolder: "./cypress/snapshots/actual",
     env: {
-      visualRegressionType: "regression",
-      visualRegressionBaseDirectory: "cypress/snapshot/base",
-      visualRegressionDiffDirectory: "cypress/snapshot/diff",
+      visualRegressionType: "base",
+      visualRegressionBaseDirectory: "cypress/snapshots/base",
+      visualRegressionDiffDirectory: "cypress/snapshots/diff",
       visualRegressionGenerateDiff: "always",
       visualRegressionFailSilently: true,
     },

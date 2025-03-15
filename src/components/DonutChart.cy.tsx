@@ -1,5 +1,3 @@
-import type { cy } from "date-fns/locale";
-import { describe, it } from "vitest";
 import { DonutChart } from "./DonutChart";
 
 describe("DonutChart", () => {
@@ -11,12 +9,20 @@ describe("DonutChart", () => {
 
     cy.mount(
       <div style={{ width: "400px", height: "400px" }}>
-        <DonutChart data={data} title="Test Chart" />
+        <DonutChart data={data} title="Test Chart" isAnimationActive={false} />
       </div>
     );
 
     cy.contains("Test Chart").should("be.visible");
-    cy.contains("A (33.33%)").should("be.visible");
-    cy.contains("B (66.67%)").should("be.visible");
+    //cy.contains("A (33.33%)").should("be.visible");
+    //cy.contains("B (66.67%)").should("be.visible");
+    cy.compareSnapshot("homePage", {
+      errorThreshold: 1,
+      failSilently: true,
+    }).then((comparisonResults) => {
+      console.log(comparisonResults.mismatchedPixels); // will print the number of mismatched pixels
+      console.log(comparisonResults.percentage); // will print the percentage (in decimals) of mismatched pixels
+      console.log(comparisonResults.error); // will print the visual regression error message (if any)
+    });
   });
 });

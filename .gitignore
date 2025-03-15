@@ -1,3 +1,5 @@
+cypress/snapshots/actual
+
 # Logs
 logs
 *.log
