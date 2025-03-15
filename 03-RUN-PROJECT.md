@@ -11,6 +11,9 @@ To run the project, follow these steps:
 
 ## TEST
 
+Reason About Unit test / component test and Visual regression
+DonutChart.tsx
+
 If you want to run the **unit tests**, use the command
 `npm run test:unit`.
 

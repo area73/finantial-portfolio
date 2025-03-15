@@ -15,6 +15,7 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
+import "@frsource/cypress-plugin-visual-regression-diff";
 import "./commands";
 import { mount } from "cypress/react";
 import "../../src/index.css";
