@@ -6,7 +6,7 @@ import {
   Legend,
   Tooltip,
 } from "recharts";
-import { formatCurrency, formatPercent } from "../lib/utils";
+import { formatCurrency, formatPercent } from "../../lib/utils";
 
 export type ChartDataItem = {
   name: string;

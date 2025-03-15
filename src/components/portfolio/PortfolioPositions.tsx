@@ -1,4 +1,4 @@
-import { PositionsTable } from "../PositionsTable";
+import { PositionsTable } from "../charts/PositionsTable";
 import { ExtendedPosition } from "../../types/portfolio";
 
 interface PortfolioPositionsProps {

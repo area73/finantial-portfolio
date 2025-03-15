@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { DonutChart, type ChartDataItem } from "../DonutChart";
+import { DonutChart, type ChartDataItem } from "../charts/DonutChart";
 import { ViewType } from "../../types/portfolio";
 
 interface PortfolioBreakdownProps {

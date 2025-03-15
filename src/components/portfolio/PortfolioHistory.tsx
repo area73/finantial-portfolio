@@ -1,4 +1,4 @@
-import { HistoricalChart } from "../HistoricalChart";
+import { HistoricalChart } from "../charts/HistoricalChart";
 import { HistoricalDataItem } from "../../types/portfolio";
 
 interface PortfolioHistoryProps {
