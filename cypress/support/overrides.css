@@ -1,9 +1,4 @@
 * {
-  animation: none !important;
-  transition: none !important;
-  transform: none !important;
-  animation-duration: 0s !important;
-  animation-delay: 0s !important;
-  transition-duration: 0s !important;
-  transition-delay: 0s !important;
+  /* Disable animations */
+  -webkit-transition-duration: 0s !important;
 }
