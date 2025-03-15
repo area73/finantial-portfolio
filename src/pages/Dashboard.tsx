@@ -1,34 +1,34 @@
-import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { DonutChart } from '../components/DonutChart';
-import { PositionsTable } from '../components/PositionsTable';
-import { HistoricalChart } from '../components/HistoricalChart';
-import { LogOut } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { clearAuth } from '../lib/auth';
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { DonutChart } from "../components/DonutChart";
+import { PositionsTable } from "../components/PositionsTable";
+import { HistoricalChart } from "../components/HistoricalChart";
+import { LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { clearAuth } from "../lib/auth";
 
-type ViewType = 'asset' | 'class';
+type ViewType = "asset" | "class";
 
 export function Dashboard() {
   const navigate = useNavigate();
-  const [view, setView] = useState<ViewType>('asset');
+  const [view, setView] = useState<ViewType>("asset");
 
   const { data: assets } = useQuery({
-    queryKey: ['assets'],
-    queryFn: () => fetch('/api/assets').then(res => res.json()),
+    queryKey: ["assets"],
+    queryFn: () => fetch("/api/assets").then((res) => res.json()),
   });
 
   const { data: portfolio } = useQuery({
-    queryKey: ['portfolio'],
-    queryFn: () => fetch('/api/portfolios').then(res => res.json()),
+    queryKey: ["portfolio"],
+    queryFn: () => fetch("/api/portfolios").then((res) => res.json()),
   });
 
   const { data: historicalData } = useQuery({
-    queryKey: ['historical'],
+    queryKey: ["historical"],
     queryFn: async () => {
-      const response = await fetch('/api/prices?asset=BTC');
-      const data = await response.json();
-      return data.map((item: any) => ({
+      const response = await fetch("/api/prices?asset=BTC");
+      const data = (await response.json()) as { date: string; price: number }[];
+      return data.map((item) => ({
         date: item.date,
         value: item.price * 2.5, // Simulated portfolio value
       }));
@@ -37,43 +37,70 @@ export function Dashboard() {
 
   const handleLogout = () => {
     clearAuth();
-    navigate('/login');
+    navigate("/login");
   };
 
   if (!assets || !portfolio || !historicalData) {
     return <div>Loading...</div>;
   }
 
-  const positions = portfolio.positions.map(position => {
-    const asset = assets.find((a: any) => a.id === position.asset);
-    return {
-      ...position,
-      assetName: asset.name,
-      assetType: asset.type,
-    };
-  });
+  interface Asset {
+    id: string;
+    name: string;
+    type: string;
+  }
 
-  const chartData = view === 'asset'
-    ? positions.map(position => ({
-        name: position.assetName,
-        value: position.quantity * position.price,
-        color: position.assetType === 'crypto' ? '#0088FE' 
-          : position.assetType === 'stock' ? '#00C49F'
-          : '#FFBB28',
-      }))
-    : Object.entries(
-        positions.reduce((acc: any, position) => {
-          const type = position.assetType;
-          acc[type] = (acc[type] || 0) + position.quantity * position.price;
-          return acc;
-        }, {})
-      ).map(([key, value]) => ({
-        name: key,
-        value: value as number,
-        color: key === 'crypto' ? '#0088FE'
-          : key === 'stock' ? '#00C49F'
-          : '#FFBB28',
-      }));
+  interface Position {
+    asset: string;
+    quantity: number;
+    price: number;
+  }
+
+  interface ExtendedPosition extends Position {
+    id: number;
+    assetName: string;
+    assetType: string;
+  }
+
+  const positions: ExtendedPosition[] = portfolio.positions.map(
+    (position: Position) => {
+      const asset = assets.find((a: Asset) => a.id === position.asset);
+      return {
+        ...position,
+        assetName: asset!.name,
+        assetType: asset!.type,
+      };
+    }
+  );
+
+  const chartData =
+    view === "asset"
+      ? positions.map((position) => ({
+          name: position.assetName,
+          value: position.quantity * position.price,
+          color:
+            position.assetType === "crypto"
+              ? "#0088FE"
+              : position.assetType === "stock"
+              ? "#00C49F"
+              : "#FFBB28",
+        }))
+      : Object.entries(
+          positions.reduce((acc: Record<string, number>, position) => {
+            const type = position.assetType;
+            acc[type] = (acc[type] || 0) + position.quantity * position.price;
+            return acc;
+          }, {})
+        ).map(([key, value]) => ({
+          name: key,
+          value: value as number,
+          color:
+            key === "crypto"
+              ? "#0088FE"
+              : key === "stock"
+              ? "#00C49F"
+              : "#FFBB28",
+        }));
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -81,7 +108,9 @@ export function Dashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-gray-900">Financial Portfolio</h1>
+              <h1 className="text-2xl font-bold text-gray-900">
+                Financial Portfolio
+              </h1>
             </div>
             <button
               onClick={handleLogout}
@@ -102,21 +131,21 @@ export function Dashboard() {
                 <h2 className="text-xl font-semibold">Portfolio Breakdown</h2>
                 <div className="flex gap-2">
                   <button
-                    onClick={() => setView('asset')}
+                    onClick={() => setView("asset")}
                     className={`px-4 py-2 rounded-md ${
-                      view === 'asset'
-                        ? 'bg-indigo-600 text-white'
-                        : 'bg-gray-100 text-gray-700'
+                      view === "asset"
+                        ? "bg-indigo-600 text-white"
+                        : "bg-gray-100 text-gray-700"
                     }`}
                   >
                     By Asset
                   </button>
                   <button
-                    onClick={() => setView('class')}
+                    onClick={() => setView("class")}
                     className={`px-4 py-2 rounded-md ${
-                      view === 'class'
-                        ? 'bg-indigo-600 text-white'
-                        : 'bg-gray-100 text-gray-700'
+                      view === "class"
+                        ? "bg-indigo-600 text-white"
+                        : "bg-gray-100 text-gray-700"
                     }`}
                   >
                     By Class
@@ -125,7 +154,11 @@ export function Dashboard() {
               </div>
               <DonutChart
                 data={chartData}
-                title={view === 'asset' ? 'Assets Distribution' : 'Asset Classes Distribution'}
+                title={
+                  view === "asset"
+                    ? "Assets Distribution"
+                    : "Asset Classes Distribution"
+                }
               />
             </div>
             <div className="bg-white rounded-lg shadow-sm p-6">

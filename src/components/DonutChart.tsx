@@ -26,7 +26,7 @@ export function DonutChart({ data, title }: DonutChartProps) {
     <div className="h-[400px] w-full">
       <h2 className="text-xl font-semibold mb-4">{title}</h2>
       <ResponsiveContainer width="100%" height="100%">
-        <PieChart>
+        <PieChart width={100} height={100}>
           <Pie
             data={data}
             cx="50%"
