@@ -4,9 +4,13 @@ import { ViewType } from "../../types/portfolio";
 
 interface PortfolioBreakdownProps {
   getChartData: (view: ViewType) => ChartDataItem[];
+  isAnimationActive?: boolean;
 }
 
-export function PortfolioBreakdown({ getChartData }: PortfolioBreakdownProps) {
+export function PortfolioBreakdown({
+  getChartData,
+  isAnimationActive = true,
+}: PortfolioBreakdownProps) {
   const [view, setView] = useState<ViewType>("asset");
   const chartData = getChartData(view);
 
@@ -38,6 +42,7 @@ export function PortfolioBreakdown({ getChartData }: PortfolioBreakdownProps) {
         </div>
       </div>
       <DonutChart
+        isAnimationActive={isAnimationActive}
         data={chartData}
         title={
           view === "asset"

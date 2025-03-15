@@ -7,3 +7,7 @@
   -webkit-animation-play-state: paused !important;
   animation-play-state: paused !important;
 }
+
+.data-cy-root {
+  padding: 20px;
+}

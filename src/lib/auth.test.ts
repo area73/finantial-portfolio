@@ -1,18 +1,18 @@
 import { setAuth, getAuth, clearAuth } from "./auth";
-import { expect } from "vitest";
+import { describe, it, expect, beforeEach } from "vitest";
 
 describe("auth utility functions", () => {
   const email = "test@example.com";
   const token = "test-token";
 
   beforeEach(() => {
-    clearAuth();
+    localStorage.clear();
   });
 
   it("should set and get auth data", () => {
     setAuth(email, token);
     const authData = getAuth();
-    expect(authData).to.deep.equal({ email, token });
+    expect(authData).toEqual({ email, token });
   });
 
   it("should clear auth data", () => {

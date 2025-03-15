@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LoginFormProps, LoginCredentials } from "../../types/auth";
+import { LoginFormProps } from "../../types/auth";
 
 export function LoginForm({ onSubmit, error }: LoginFormProps) {
   const [email, setEmail] = useState("");

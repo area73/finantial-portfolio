@@ -1,6 +1,9 @@
-import { PositionsTable } from "./PositionsTable";
+import { PortfolioPositions } from "./PortfolioPositions";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-describe("PositionsTable", () => {
+describe("PortfolioPositions", () => {
+  const queryClient = new QueryClient();
+
   it("displays the correct data", () => {
     const positions = [
       {
@@ -28,11 +31,13 @@ describe("PositionsTable", () => {
         assetType: "stock",
       },
     ];
-    cy.viewport(800, 250);
+    cy.viewport(800, 400);
     cy.mount(
-      <div style={{ width: "100%", height: "200px" }}>
-        <PositionsTable positions={positions} />
-      </div>
+      <QueryClientProvider client={queryClient}>
+        <div style={{ width: "100%", height: "400px" }}>
+          <PortfolioPositions positions={positions} />
+        </div>
+      </QueryClientProvider>
     );
     /**
      *  NOTE: as described on DonutChart.cy.tsx, we are only going to do the visual regression test

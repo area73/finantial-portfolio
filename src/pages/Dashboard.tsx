@@ -1,4 +1,4 @@
-import { DashboardHeader } from "../components/layout/DashboardHeder";
+import { DashboardHeader } from "../components/layout/DashboardHeader";
 import { PortfolioBreakdown } from "../components/portfolio/PortfolioBreakdown";
 import { PortfolioHistory } from "../components/portfolio/PortfolioHistory";
 import { PortfolioPositions } from "../components/portfolio/PortfolioPositions";
@@ -20,7 +20,7 @@ export function Dashboard() {
         <div className="px-4 py-6 sm:px-0">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <PortfolioBreakdown getChartData={getChartData} />
-            <PortfolioHistory historicalData={historicalData} />
+            <PortfolioHistory historicalData={historicalData!} />
           </div>
           <div className="mt-6">
             <PortfolioPositions positions={positions} />
