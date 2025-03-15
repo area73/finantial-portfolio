@@ -3,7 +3,7 @@ import { DonutChart } from "./DonutChart";
 describe("DonutChart", () => {
   it("displays the correct data", () => {
     const data = [
-      { name: "A", value: 100, color: "#0088FE" },
+      { name: "A", value: 200, color: "#0088FE" },
       { name: "B", value: 200, color: "#00C49F" },
     ];
 
