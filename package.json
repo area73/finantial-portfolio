@@ -12,13 +12,15 @@
     "test": "vitest",
     "cypress:open": "cypress open --component --browser chrome --config-file cypress.config.ts",
     "cypress:run": "cypress run --component --config-file cypress.config.ts",
-    "cypress:cleanup": "cypress run --component --env 'pluginVisualRegressionCleanupUnusedImages=true'"
+    "cypress:cleanup": "cypress run --component --env 'pluginVisualRegressionCleanupUnusedImages=true'",
+    "generate:types": "openapi-zod-client './src/api/vega-api.yaml' -o './src/api/client.ts'"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.67.3",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "lucide-react": "^0.482.0",
+    "openapi-zod-client": "^1.18.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.3.0",
