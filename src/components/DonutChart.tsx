@@ -8,12 +8,14 @@ import {
 } from "recharts";
 import { formatCurrency, formatPercent } from "../lib/utils";
 
+export type ChartDataItem = {
+  name: string;
+  value: number;
+  color: string;
+};
+
 interface DonutChartProps {
-  data: Array<{
-    name: string;
-    value: number;
-    color: string;
-  }>;
+  data: ChartDataItem[];
   title: string;
   isAnimationActive?: boolean;
 }
@@ -28,7 +30,7 @@ export function DonutChart({
   const total = data.reduce((sum, item) => sum + item.value, 0);
 
   return (
-    <div className="h-[400px] w-full">
+    <div className="h-[300px] w-full">
       <h2 className="text-xl font-semibold mb-4">{title}</h2>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart width={100} height={100}>
