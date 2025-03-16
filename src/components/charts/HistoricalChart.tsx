@@ -31,7 +31,7 @@ export function HistoricalChart({
           margin={{
             top: 5,
             right: 30,
-            left: 20,
+            left: 40,
             bottom: 5,
           }}
         >
@@ -48,6 +48,9 @@ export function HistoricalChart({
           <YAxis tickFormatter={(value) => formatCurrency(value)} />
           <Tooltip
             isAnimationActive={isAnimationActive}
+            labelFormatter={(value: string) =>
+              new Date(value).toLocaleDateString()
+            }
             formatter={(value: number) => [
               formatCurrency(value),
               "Portfolio Value",
