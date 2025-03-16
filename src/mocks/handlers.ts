@@ -11,7 +11,7 @@ const generateHistoricalPrices = (basePrice: number, days: number) => {
 const assets = [
   { id: "1", name: "Bitcoin", type: "crypto", symbol: "BTC" },
   { id: "2", name: "Ethereum", type: "crypto", symbol: "ETH" },
-  { id: "3", name: "Apple Inc.", type: "stock", symbol: "AAPL" },
+  { id: "3", name: "Apple Inc.", type: "stock", symbol: "APPL" },
   { id: "4", name: "Microsoft", type: "stock", symbol: "MSFT" },
   { id: "5", name: "US Dollar", type: "fiat", symbol: "USD" },
 ];

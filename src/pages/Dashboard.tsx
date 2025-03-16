@@ -20,10 +20,10 @@ export function Dashboard() {
         <div className="px-4 py-6 sm:px-0">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <PortfolioBreakdown getChartData={getChartData} />
-            <PortfolioHistory historicalData={historicalData!} />
+            <PortfolioPositions positions={positions} />
           </div>
           <div className="mt-6">
-            <PortfolioPositions positions={positions} />
+            <PortfolioHistory historicalData={historicalData!} />
           </div>
         </div>
       </main>
