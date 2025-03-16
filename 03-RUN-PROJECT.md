@@ -9,14 +9,14 @@ To run the project, follow these steps:
 4. Run the command `npm run dev` to start the dev server.
 5. Open your browser and navigate to http://localhost:5173/
 
-Alternative you can also build the project with `npm run build`
+Alternative you can also build the project with `npm run build` and run it in a server
 
 ## TEST
 
 ### Unit test
 
-I create most of the unit test.
-My approach for unit testing is to test non visual components , mos of the time functions
+I create some of the unit test, my intention is not to do all the test since this is a challenge I would like to give a preview of how I approach test but not to fullfil all tests do to time constrains.
+My approach for unit testing is to test **non visual components or functions**
 to start unit test please run
 
 ```bash
@@ -25,13 +25,13 @@ npm run test
 
 This will run vitest in watch mode
 
-### component test
+### Component test
 
 Here we will test any component useful and that has a visual representation
 These test have been made with cypress but with component view (not e2e).
 
-My approach for these test is to do them along with visual regression test because in most of the cases you can
-fulfill all your asetions requirements with a single snapshot
+My approach for these test is to do them along with **visual regression test** because in most of the cases you can
+fulfill all your assertions requirements with a single snapshot
 You can see more comment about these matter on this test:
 
 **src/components/charts/DonutChart.cy.tsx**
@@ -39,7 +39,7 @@ You can see more comment about these matter on this test:
 ### Automatic visual regression test
 
 As I said previously I made some visual regression test for components , I think it is a valuable way
-of keeping everythind under visual control.
+of keeping everything under visual control.
 
 To run the visual test you can do it in different ways:
 
@@ -57,7 +57,7 @@ npm cypress:cleanup # handy utility to cleanup unused spanshots
 
 Do to time contrains I didn't create any functional or e2e test, the idea will be to do it with cypress
 
-## LINT
+## Lint
 
 To run the linter, use the command `npm run lint`.
 
