@@ -1,6 +1,22 @@
 export type ViewType = "asset" | "class";
 export type assetType = "crypto" | "fiat" | "stock";
 
+export type Portfolios = Portfolio[];
+
+export interface Portfolio {
+  id: string;
+  asOf: string;
+  positions: Position[];
+}
+
+export interface Position {
+  id: number;
+  asset: string;
+  quantity: number;
+  asOf: string;
+  price: number;
+}
+
 export interface Asset {
   id: string;
   name: string;
@@ -12,11 +28,13 @@ export interface Price {
   price: number;
 }
 
+/*
 export interface Position {
   asset: string;
   quantity: number;
   price: number;
 }
+  */
 
 export interface ExtendedPosition extends Position {
   id: number;

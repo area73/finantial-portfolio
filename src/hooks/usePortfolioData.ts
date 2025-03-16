@@ -5,7 +5,9 @@ import {
   ExtendedPosition,
   ChartDataItem,
   ViewType,
+  type Portfolios,
 } from "../types/portfolio";
+import { getPositionsValue } from "../lib/utils";
 
 export function usePortfolioData() {
   const { data: assets, isLoading: assetsLoading } = useQuery({
@@ -18,6 +20,7 @@ export function usePortfolioData() {
     queryFn: () => fetch("/api/portfolios").then((res) => res.json()),
   });
 
+  /*
   const { data: historicalData, isLoading: historicalLoading } = useQuery({
     queryKey: ["historical"],
     queryFn: async () => {
@@ -29,13 +32,51 @@ export function usePortfolioData() {
       }));
     },
   });
+  */
+
+  const { data: historicalData, isLoading: historicalLoading } = useQuery({
+    queryKey: ["historical"],
+    queryFn: async () => {
+      const response = await fetch("/api/portfolios");
+      const data = (await response.json()) as Portfolios;
+      /*
+      [
+    {
+        "date": "2025-03-16T12:00:00Z",
+        "value": 4810
+    },
+    {
+        "date": "2025-03-15T12:00:00Z",
+        "value": 4685
+    },
+    {
+        "date": "2025-03-14T12:00:00Z",
+        "value": 4470
+    },
+    {
+        "date": "2025-03-13T12:00:00Z",
+        "value": 4590
+    },
+    {
+        "date": "2025-03-12T12:00:00Z",
+        "value": 4740
+    }
+]
+      */
+      const res = data.map((portfolio) => ({
+        date: portfolio.asOf,
+        value: getPositionsValue(portfolio),
+      }));
+      return res;
+    },
+  });
 
   const isLoading = assetsLoading || portfolioLoading || historicalLoading;
 
   const getExtendedPositions = (): ExtendedPosition[] => {
     if (!assets || !portfolio) return [];
 
-    return portfolio.positions.map((position: Position) => {
+    return portfolio[0].positions.map((position: Position) => {
       const asset = assets.find((a: Asset) => a.id === position.asset);
       return {
         ...position,

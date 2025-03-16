@@ -1,10 +1,17 @@
-import type { Price } from "../types/portfolio";
+import type { Portfolio, Price } from "../types/portfolio";
 
 export function formatCurrency(amount: number): string {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
   }).format(amount);
+}
+
+export function getPositionsValue(portfolio: Portfolio): number {
+  // Sum of (price * quantity) for each position in the portfolio
+  return portfolio.positions.reduce((total, position) => {
+    return total + position.price * position.quantity;
+  }, 0);
 }
 
 export function formatPercent(value: number): string {

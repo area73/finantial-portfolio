@@ -7,6 +7,7 @@ import { usePortfolioData } from "../hooks/usePortfolioData";
 export function Dashboard() {
   const { isLoading, positions, getChartData, historicalData } =
     usePortfolioData();
+
   if (isLoading) {
     return <div>Loading...</div>;
   }

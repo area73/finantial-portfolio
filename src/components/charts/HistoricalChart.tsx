@@ -37,6 +37,7 @@ export function HistoricalChart({
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
+            tickFormatter={(value) => new Date(value).toLocaleDateString()}
             dataKey="date"
             angle={-45}
             textAnchor="end"
