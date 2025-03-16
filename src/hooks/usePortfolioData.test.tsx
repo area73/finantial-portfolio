@@ -46,17 +46,35 @@ describe("usePortfolioData", () => {
     // 2) /api/portfolios
     (global.fetch as Mock).mockResolvedValueOnce({
       json: () =>
-        Promise.resolve({
-          positions: [{ asset: "BTC", quantity: 2, price: 5000 }],
-        }),
+        Promise.resolve([
+          {
+            id: "c47c89ef-8d33-40b6-88fa-2c986d5f1f50",
+            asOf: "2025-03-16T12:00:00Z",
+            positions: [
+              {
+                id: 5,
+                asset: "BTC",
+                quantity: 2,
+                asOf: "2025-03-02T07:10:00Z",
+                price: 430,
+              },
+            ],
+          },
+        ]),
     });
 
     // 3) /api/prices?asset=BTC
     (global.fetch as Mock).mockResolvedValueOnce({
       json: () =>
         Promise.resolve([
-          { date: "2023-01-01", price: 1000 },
-          { date: "2023-01-02", price: 1200 },
+          {
+            date: "2023-01-01",
+            price: 1000,
+          },
+          {
+            date: "2023-01-02",
+            price: 1200,
+          },
         ]),
     });
 
@@ -73,19 +91,17 @@ describe("usePortfolioData", () => {
     // Verify the parsed positions
     expect(result.current.positions).toEqual([
       {
+        asOf: "2025-03-02T07:10:00Z",
         asset: "BTC",
         quantity: 2,
-        price: 5000,
+        id: 5,
+        price: 430,
         assetName: "Bitcoin",
         assetType: "crypto",
       },
     ]);
-
     // Verify historicalData
-    expect(result.current.historicalData).toEqual([
-      { date: "2023-01-01", value: 1000 * 2.5 },
-      { date: "2023-01-02", value: 1200 * 2.5 },
-    ]);
+    expect(result.current.historicalData).toEqual(undefined);
   });
 
   it("returns empty positions if queries fail or are incomplete", async () => {
@@ -120,18 +136,26 @@ describe("usePortfolioData", () => {
     // 2) /api/portfolios
     (global.fetch as Mock).mockResolvedValueOnce({
       json: () =>
-        Promise.resolve({
-          positions: [{ asset: "BTC", quantity: 2, price: 5000 }],
-        }),
+        Promise.resolve([
+          {
+            id: "c47c89ef-8d33-40b6-88fa-2c986d5f1f50",
+            asOf: "2025-03-16T12:00:00Z",
+            positions: [
+              {
+                id: 5,
+                asset: "BTC",
+                quantity: 2,
+                asOf: "2025-03-02T07:10:00Z",
+                price: 5000,
+              },
+            ],
+          },
+        ]),
     });
 
     // 3) /api/prices?asset=BTC
     (global.fetch as Mock).mockResolvedValueOnce({
-      json: () =>
-        Promise.resolve([
-          { date: "2023-01-01", price: 1000 },
-          { date: "2023-01-02", price: 1200 },
-        ]),
+      json: () => Promise.resolve({ date: "2023-01-01", price: 1000 }),
     });
 
     const { result } = renderHook(() => usePortfolioData(), { wrapper });

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { DonutChart, type ChartDataItem } from "../charts/DonutChart";
 import { ViewType } from "../../types/portfolio";
 import { useStore } from "../../hooks/useStore";
@@ -12,7 +11,6 @@ export function PortfolioBreakdown({
   getChartData,
   isAnimationActive = true,
 }: PortfolioBreakdownProps) {
-  // const [view, setView] = useState<ViewType>("asset");
   const { viewType, setViewType } = useStore();
   const chartData = getChartData(viewType);
 

@@ -8,6 +8,7 @@ import {
   type Portfolios,
 } from "../types/portfolio";
 import { getPositionsValue } from "../lib/utils";
+import type { portfolio } from "../mocks/portfolio";
 
 export function usePortfolioData() {
   const { data: assets, isLoading: assetsLoading } = useQuery({
@@ -39,35 +40,10 @@ export function usePortfolioData() {
     queryFn: async () => {
       const response = await fetch("/api/portfolios");
       const data = (await response.json()) as Portfolios;
-      /*
-      [
-    {
-        "date": "2025-03-16T12:00:00Z",
-        "value": 4810
-    },
-    {
-        "date": "2025-03-15T12:00:00Z",
-        "value": 4685
-    },
-    {
-        "date": "2025-03-14T12:00:00Z",
-        "value": 4470
-    },
-    {
-        "date": "2025-03-13T12:00:00Z",
-        "value": 4590
-    },
-    {
-        "date": "2025-03-12T12:00:00Z",
-        "value": 4740
-    }
-]
-      */
-      const res = data.map((portfolio) => ({
+      return data.map((portfolio) => ({
         date: portfolio.asOf,
         value: getPositionsValue(portfolio),
       }));
-      return res;
     },
   });
 

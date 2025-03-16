@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import type { ViewType } from "../types/portfolio";
-import { set } from "date-fns";
 
 type Store = {
   viewType: ViewType;
