@@ -1,4 +1,7 @@
-import { formatCurrency } from "../../lib/utils";
+import { useStore } from "../../hooks/useStore";
+import { PositionsByAssetTable } from "./PositionsByAssetTable";
+import { PositionsByClassTable } from "./PositionsByClassTable";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Position {
   id: number;
@@ -14,50 +17,32 @@ interface PositionsTableProps {
 }
 
 export function PositionsTable({ positions }: PositionsTableProps) {
+  const { viewType } = useStore();
   return (
     <div className="overflow-x-auto">
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
-          <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Asset
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Type
-            </th>
-            <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Quantity
-            </th>
-            <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Price
-            </th>
-            <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Value
-            </th>
-          </tr>
-        </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
-          {positions.map((position) => (
-            <tr key={position.id}>
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {position.assetName}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 capitalize">
-                {position.assetType}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right">
-                {position.quantity.toLocaleString()}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right">
-                {formatCurrency(position.price)}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right">
-                {formatCurrency(position.quantity * position.price)}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <AnimatePresence mode="wait">
+        {viewType === "asset" ? (
+          <motion.div
+            key="asset"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <PositionsByAssetTable positions={positions} />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="class"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <PositionsByClassTable positions={positions} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
