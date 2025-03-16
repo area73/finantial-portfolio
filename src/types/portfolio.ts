@@ -28,14 +28,6 @@ export interface Price {
   price: number;
 }
 
-/*
-export interface Position {
-  asset: string;
-  quantity: number;
-  price: number;
-}
-  */
-
 export interface ExtendedPosition extends Position {
   id: number;
   assetName: string;

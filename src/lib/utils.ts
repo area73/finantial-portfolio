@@ -1,4 +1,15 @@
 import type { Portfolio, Price } from "../types/portfolio";
+interface Position {
+  assetType: string;
+  quantity: number;
+  price: number;
+}
+
+interface GroupedPosition {
+  assetType: string;
+  totalQuantity: number;
+  totalPrice: number;
+}
 
 export function formatCurrency(amount: number): string {
   return new Intl.NumberFormat("en-US", {
@@ -20,18 +31,6 @@ export function formatPercent(value: number): string {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(value);
-}
-
-interface Position {
-  assetType: string;
-  quantity: number;
-  price: number;
-}
-
-interface GroupedPosition {
-  assetType: string;
-  totalQuantity: number;
-  totalPrice: number;
 }
 
 export const getSelectedAssets = (ids: string[], assets: Price[]) => {
@@ -68,6 +67,5 @@ export function groupPositionsByAssetType(
     },
     {}
   );
-
   return Object.values(grouped);
 }

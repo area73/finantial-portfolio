@@ -7,28 +7,41 @@ describe("PortfolioPositions", () => {
   it("displays the correct data", () => {
     const positions = [
       {
+        id: 5,
+        asset: "BTC",
+        quantity: 4,
+        asOf: "2025-03-02T07:10:00Z",
+        price: 390,
+        assetName: "Bitcoin",
+        assetType: "Cryptocurrency",
+      },
+      {
+        id: 13,
+        asset: "ETH",
+        quantity: 0, // Added default quantity
+        price: 310,
+        assetName: "Ethereum",
+        assetType: "Cryptocurrency",
+        asOf: "2025-03-03T15:10:00Z",
+      },
+      {
         id: 1,
-        asset: "AAPL",
-        quantity: 10,
-        price: 150,
-        assetName: "Apple Inc.",
-        assetType: "stock",
+        asset: "APPL",
+        quantity: 4,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 310,
+        assetName: "Apple",
+        assetType: "Stock",
       },
+
       {
-        id: 2,
-        asset: "GOOGL",
-        quantity: 5,
-        price: 2800,
-        assetName: "Alphabet Inc.",
-        assetType: "stock",
-      },
-      {
-        id: 3,
-        asset: "TSLA",
-        quantity: 2,
-        price: 700,
-        assetName: "Tesla Inc.",
-        assetType: "stock",
+        id: 9,
+        asset: "USD",
+        quantity: 400,
+        asOf: "2025-03-02T06:30:00Z",
+        price: 1,
+        assetName: "US Dollar",
+        assetType: "Currency",
       },
     ];
     cy.viewport(800, 400);

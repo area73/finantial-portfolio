@@ -14,7 +14,10 @@ describe("PortfolioHistory", () => {
     cy.mount(
       <QueryClientProvider client={queryClient}>
         <div style={{ width: "100%", height: "400px" }}>
-          <PortfolioHistory historicalData={historicalData} />
+          <PortfolioHistory
+            historicalData={historicalData}
+            isAnimationActive={false}
+          />
         </div>
       </QueryClientProvider>
     );
