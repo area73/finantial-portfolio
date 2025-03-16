@@ -1,39 +1,18 @@
 import { http, HttpResponse } from "msw";
-import { format, subDays } from "date-fns";
+import { prices } from "./prices";
+import { assets } from "./assets";
+import { portfolio } from "./portfolio";
+import type { Asset } from "../types/portfolio";
+import {
+  findPricesByDate,
+  findPricesByLastDate,
+  getSelectedAssets,
+} from "../lib/utils";
 
-const generateHistoricalPrices = (basePrice: number, days: number) => {
-  return Array.from({ length: days }).map((_, index) => ({
-    date: format(subDays(new Date(), index), "yyyy-MM-dd"),
-    price: basePrice + Math.random() * 10000,
-  }));
-};
-
-const assets = [
-  { id: "1", name: "Bitcoin", type: "crypto", symbol: "BTC" },
-  { id: "2", name: "Ethereum", type: "crypto", symbol: "ETH" },
-  { id: "3", name: "Apple Inc.", type: "stock", symbol: "APPL" },
-  { id: "4", name: "Microsoft", type: "stock", symbol: "MSFT" },
-  { id: "5", name: "US Dollar", type: "fiat", symbol: "USD" },
-];
-
-const prices = {
-  BTC: generateHistoricalPrices(45000, 30),
-  ETH: generateHistoricalPrices(2500, 30),
-  AAPL: generateHistoricalPrices(180, 30),
-  MSFT: generateHistoricalPrices(350, 30),
-  USD: generateHistoricalPrices(1, 30),
-};
-
-const portfolio = {
-  id: "123",
-  asOf: new Date().toISOString(),
-  positions: [
-    { id: 1, asset: "1", quantity: 2.5, price: 45000 },
-    { id: 2, asset: "2", quantity: 10, price: 2500 },
-    { id: 3, asset: "3", quantity: 50, price: 180 },
-    { id: 4, asset: "4", quantity: 30, price: 350 },
-    { id: 5, asset: "5", quantity: 10000, price: 1 },
-  ],
+const getAssetIds = (assets: Asset[]) => {
+  return assets.reduce<string[]>((acc, item) => {
+    return [...acc, item.id];
+  }, []);
 };
 
 export const handlers = [
@@ -43,26 +22,48 @@ export const handlers = [
 
   http.get("/api/prices", ({ request }) => {
     const url = new URL(request.url);
-    const asset = url.searchParams.get("asset");
-    const asOf = url.searchParams.get("asOf");
-
-    if (asset) {
-      const assetData = assets.find((a) => a.symbol === asset);
-      if (!assetData) return new HttpResponse(null, { status: 404 });
-
-      if (asOf) {
-        const priceData = prices[asset as keyof typeof prices].find(
-          (p) => p.date === asOf
-        );
-        return HttpResponse.json([
-          { id: assetData.id, asset, price: priceData?.price || 0 },
-        ]);
+    const queriedAssets = (url.searchParams.get("asset") || "").split(",");
+    const asOf = parseInt(url.searchParams.get("asOf") || "0");
+    if (queriedAssets.length > 0) {
+      // get an array of id values of assets
+      const trackedAssets = getAssetIds(assets);
+      const intersectedAssets = queriedAssets.filter((item) =>
+        trackedAssets.includes(item)
+      );
+      /**
+       * this is only for demonstration purposes
+       * if we are asking for  assets that are  not in our database,
+       *  we return a 404 response to handle errors gracefully
+       */
+      if (!intersectedAssets) {
+        return new HttpResponse(null, {
+          status: 404,
+          statusText: "asset not found",
+        });
       }
 
-      return HttpResponse.json(prices[asset as keyof typeof prices]);
+      if (asOf) {
+        const entryFromDate = findPricesByDate(prices, asOf);
+        if (entryFromDate) {
+          return HttpResponse.json(
+            getSelectedAssets(queriedAssets, entryFromDate)
+          );
+        } else {
+          return new HttpResponse(null, {
+            status: 404,
+            statusText: "price not found",
+          });
+        }
+      }
+      const entryFromLastDate = findPricesByLastDate(prices);
+      return HttpResponse.json(
+        getSelectedAssets(queriedAssets, entryFromLastDate)
+      );
     }
-
+    // If we don't have an asset, return an empty array
     return HttpResponse.json([]);
+
+    // TODO: provide a range by using the from and to parameters.
   }),
 
   http.get("/api/portfolios", () => {

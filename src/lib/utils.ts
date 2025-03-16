@@ -1,3 +1,5 @@
+import type { Price } from "../types/portfolio";
+
 export function formatCurrency(amount: number): string {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -24,6 +26,25 @@ interface GroupedPosition {
   totalQuantity: number;
   totalPrice: number;
 }
+
+export const getSelectedAssets = (ids: string[], assets: Price[]) => {
+  return assets.filter((item) => ids.includes(item.asset));
+};
+
+export const findPricesByDate = (
+  prices: Record<number, Price[]>[],
+  date: number
+) => {
+  const priceByDate = prices.find((item) => {
+    const [dateString] = Object.keys(item);
+    return parseInt(dateString, 10) === date;
+  });
+  return priceByDate ? priceByDate[date] : null;
+};
+export const findPricesByLastDate = (prices: Record<number, Price[]>[]) => {
+  const [lastDay] = Object.keys(prices[0]);
+  return prices[0][parseInt(lastDay, 10)];
+};
 
 export function groupPositionsByAssetType(
   positions: Position[]
