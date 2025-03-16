@@ -8,7 +8,6 @@ import {
   type Portfolios,
 } from "../types/portfolio";
 import { getPositionsValue } from "../lib/utils";
-import type { portfolio } from "../mocks/portfolio";
 
 export function usePortfolioData() {
   const { data: assets, isLoading: assetsLoading } = useQuery({
@@ -20,20 +19,6 @@ export function usePortfolioData() {
     queryKey: ["portfolio"],
     queryFn: () => fetch("/api/portfolios").then((res) => res.json()),
   });
-
-  /*
-  const { data: historicalData, isLoading: historicalLoading } = useQuery({
-    queryKey: ["historical"],
-    queryFn: async () => {
-      const response = await fetch("/api/prices?asset=BTC");
-      const data = (await response.json()) as { date: string; price: number }[];
-      return data.map((item) => ({
-        date: item.date,
-        value: item.price * 2.5, // Simulated portfolio value
-      }));
-    },
-  });
-  */
 
   const { data: historicalData, isLoading: historicalLoading } = useQuery({
     queryKey: ["historical"],
