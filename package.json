@@ -7,13 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
     "prepare": "msw init public/ --no-save",
     "test": "vitest",
     "cypress:open": "cypress open --component --browser chrome --config-file cypress.config.ts",
     "cypress:run": "cypress run --component --config-file cypress.config.ts",
-    "cypress:cleanup": "cypress run --component --env 'pluginVisualRegressionCleanupUnusedImages=true'",
-    "generate:types": "openapi-zod-client './src/api/vega-api.yaml' -o './src/api/client.ts'"
+    "cypress:cleanup": "cypress run --component --env 'pluginVisualRegressionCleanupUnusedImages=true'"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.67.3",
