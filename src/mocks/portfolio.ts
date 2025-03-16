@@ -1,4 +1,5 @@
 export const portfolio = [
+  // Ya existentes
   {
     id: "c47c89ef-8d33-40b6-88fa-2c986d5f1f50",
     asOf: "2025-03-16T12:00:00Z",
@@ -41,7 +42,7 @@ export const portfolio = [
     ],
   },
   {
-    id: "c47c89ef-8d33-40b6-88fa-2c986d5f1f50",
+    id: "b2071923-d095-45e7-9308-6cdaad956d01",
     asOf: "2025-03-15T12:00:00Z",
     positions: [
       {
@@ -82,7 +83,7 @@ export const portfolio = [
     ],
   },
   {
-    id: "c47c89ef-8d33-40b6-88fa-2c986d5f1f50",
+    id: "555f3707-2919-4b65-b48d-b0b5ff7c1274",
     asOf: "2025-03-14T12:00:00Z",
     positions: [
       {
@@ -123,7 +124,7 @@ export const portfolio = [
     ],
   },
   {
-    id: "c47c89ef-8d33-40b6-88fa-2c986d5f1f50",
+    id: "4254c62d-06c0-44ad-9b34-21515d8900ca",
     asOf: "2025-03-13T12:00:00Z",
     positions: [
       {
@@ -164,7 +165,7 @@ export const portfolio = [
     ],
   },
   {
-    id: "c47c89ef-8d33-40b6-88fa-2c986d5f1f50",
+    id: "3c148f61-3fc5-46dc-a3d3-75fc600b98f5",
     asOf: "2025-03-12T12:00:00Z",
     positions: [
       {
@@ -199,6 +200,417 @@ export const portfolio = [
         id: 9,
         asset: "USD",
         quantity: 500,
+        asOf: "2025-03-02T06:30:00Z",
+        price: 1,
+      },
+    ],
+  },
+  // Ahora añadimos 10 portfolios más con fechas correlativas y nuevos IDs
+  {
+    id: "44c0f07c-9ec0-4001-b3f3-792ff8c1221b",
+    asOf: "2025-03-11T12:00:00Z",
+    positions: [
+      {
+        id: 5,
+        asset: "BTC",
+        quantity: 2,
+        asOf: "2025-03-02T07:10:00Z",
+        price: 450,
+      },
+      {
+        id: 13,
+        asset: "ETH",
+        quantity: 2,
+        asOf: "2025-03-03T15:10:00Z",
+        price: 340,
+      },
+      {
+        id: 1,
+        asset: "APPL",
+        quantity: 5,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 295,
+      },
+      {
+        id: 17,
+        asset: "MSFT",
+        quantity: 5,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 265,
+      },
+      {
+        id: 9,
+        asset: "USD",
+        quantity: 450,
+        asOf: "2025-03-02T06:30:00Z",
+        price: 1,
+      },
+    ],
+  },
+  {
+    id: "8ec02fc5-2146-4ef7-b2ff-afb9edf05647",
+    asOf: "2025-03-10T12:00:00Z",
+    positions: [
+      {
+        id: 5,
+        asset: "BTC",
+        quantity: 1,
+        asOf: "2025-03-02T07:10:00Z",
+        price: 470,
+      },
+      {
+        id: 13,
+        asset: "ETH",
+        quantity: 3,
+        asOf: "2025-03-03T15:10:00Z",
+        price: 350,
+      },
+      {
+        id: 1,
+        asset: "APPL",
+        quantity: 3,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 280,
+      },
+      {
+        id: 17,
+        asset: "MSFT",
+        quantity: 2,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 255,
+      },
+      {
+        id: 9,
+        asset: "USD",
+        quantity: 700,
+        asOf: "2025-03-02T06:30:00Z",
+        price: 1,
+      },
+    ],
+  },
+  {
+    id: "f68dee3e-1528-4c54-b7b2-93ed959cc578",
+    asOf: "2025-03-09T12:00:00Z",
+    positions: [
+      {
+        id: 5,
+        asset: "BTC",
+        quantity: 3,
+        asOf: "2025-03-02T07:10:00Z",
+        price: 410,
+      },
+      {
+        id: 13,
+        asset: "ETH",
+        quantity: 1,
+        asOf: "2025-03-03T15:10:00Z",
+        price: 390,
+      },
+      {
+        id: 1,
+        asset: "APPL",
+        quantity: 2,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 310,
+      },
+      {
+        id: 17,
+        asset: "MSFT",
+        quantity: 6,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 270,
+      },
+      {
+        id: 9,
+        asset: "USD",
+        quantity: 600,
+        asOf: "2025-03-02T06:30:00Z",
+        price: 1,
+      },
+    ],
+  },
+  {
+    id: "259a8fa5-8318-49cc-bc02-95737d188e98",
+    asOf: "2025-03-08T12:00:00Z",
+    positions: [
+      {
+        id: 5,
+        asset: "BTC",
+        quantity: 2,
+        asOf: "2025-03-02T07:10:00Z",
+        price: 375,
+      },
+      {
+        id: 13,
+        asset: "ETH",
+        quantity: 3,
+        asOf: "2025-03-03T15:10:00Z",
+        price: 310,
+      },
+      {
+        id: 1,
+        asset: "APPL",
+        quantity: 5,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 299,
+      },
+      {
+        id: 17,
+        asset: "MSFT",
+        quantity: 4,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 250,
+      },
+      {
+        id: 9,
+        asset: "USD",
+        quantity: 400,
+        asOf: "2025-03-02T06:30:00Z",
+        price: 1,
+      },
+    ],
+  },
+  {
+    id: "8c040716-3f7a-4f2a-a253-2fe809dabf8e",
+    asOf: "2025-03-07T12:00:00Z",
+    positions: [
+      {
+        id: 5,
+        asset: "BTC",
+        quantity: 1,
+        asOf: "2025-03-02T07:10:00Z",
+        price: 385,
+      },
+      {
+        id: 13,
+        asset: "ETH",
+        quantity: 2,
+        asOf: "2025-03-03T15:10:00Z",
+        price: 320,
+      },
+      {
+        id: 1,
+        asset: "APPL",
+        quantity: 4,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 305,
+      },
+      {
+        id: 17,
+        asset: "MSFT",
+        quantity: 3,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 240,
+      },
+      {
+        id: 9,
+        asset: "USD",
+        quantity: 550,
+        asOf: "2025-03-02T06:30:00Z",
+        price: 1,
+      },
+    ],
+  },
+  {
+    id: "2fe407dc-1431-4eae-a0c4-6f5e1f9ac50f",
+    asOf: "2025-03-06T12:00:00Z",
+    positions: [
+      {
+        id: 5,
+        asset: "BTC",
+        quantity: 2,
+        asOf: "2025-03-02T07:10:00Z",
+        price: 399,
+      },
+      {
+        id: 13,
+        asset: "ETH",
+        quantity: 2,
+        asOf: "2025-03-03T15:10:00Z",
+        price: 285,
+      },
+      {
+        id: 1,
+        asset: "APPL",
+        quantity: 1,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 315,
+      },
+      {
+        id: 17,
+        asset: "MSFT",
+        quantity: 7,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 250,
+      },
+      {
+        id: 9,
+        asset: "USD",
+        quantity: 480,
+        asOf: "2025-03-02T06:30:00Z",
+        price: 1,
+      },
+    ],
+  },
+  {
+    id: "5de0088c-258b-4bdc-b2ed-3b9353f716f6",
+    asOf: "2025-03-05T12:00:00Z",
+    positions: [
+      {
+        id: 5,
+        asset: "BTC",
+        quantity: 1,
+        asOf: "2025-03-02T07:10:00Z",
+        price: 405,
+      },
+      {
+        id: 13,
+        asset: "ETH",
+        quantity: 5,
+        asOf: "2025-03-03T15:10:00Z",
+        price: 280,
+      },
+      {
+        id: 1,
+        asset: "APPL",
+        quantity: 2,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 298,
+      },
+      {
+        id: 17,
+        asset: "MSFT",
+        quantity: 5,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 270,
+      },
+      {
+        id: 9,
+        asset: "USD",
+        quantity: 620,
+        asOf: "2025-03-02T06:30:00Z",
+        price: 1,
+      },
+    ],
+  },
+  {
+    id: "a1cf58cf-5be5-421f-a629-f66a15b59d86",
+    asOf: "2025-03-04T12:00:00Z",
+    positions: [
+      {
+        id: 5,
+        asset: "BTC",
+        quantity: 4,
+        asOf: "2025-03-02T07:10:00Z",
+        price: 390,
+      },
+      {
+        id: 13,
+        asset: "ETH",
+        quantity: 1,
+        asOf: "2025-03-03T15:10:00Z",
+        price: 310,
+      },
+      {
+        id: 1,
+        asset: "APPL",
+        quantity: 4,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 310,
+      },
+      {
+        id: 17,
+        asset: "MSFT",
+        quantity: 2,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 285,
+      },
+      {
+        id: 9,
+        asset: "USD",
+        quantity: 400,
+        asOf: "2025-03-02T06:30:00Z",
+        price: 1,
+      },
+    ],
+  },
+  {
+    id: "dc7bae3c-3672-4626-8139-b6c7227d45b6",
+    asOf: "2025-03-03T12:00:00Z",
+    positions: [
+      {
+        id: 5,
+        asset: "BTC",
+        quantity: 2,
+        asOf: "2025-03-02T07:10:00Z",
+        price: 385,
+      },
+      {
+        id: 13,
+        asset: "ETH",
+        quantity: 3,
+        asOf: "2025-03-03T15:10:00Z",
+        price: 340,
+      },
+      {
+        id: 1,
+        asset: "APPL",
+        quantity: 6,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 295,
+      },
+      {
+        id: 17,
+        asset: "MSFT",
+        quantity: 3,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 275,
+      },
+      {
+        id: 9,
+        asset: "USD",
+        quantity: 450,
+        asOf: "2025-03-02T06:30:00Z",
+        price: 1,
+      },
+    ],
+  },
+  {
+    id: "67e462fc-8f24-40b7-9b20-19a36dd43fea",
+    asOf: "2025-03-02T12:00:00Z",
+    positions: [
+      {
+        id: 5,
+        asset: "BTC",
+        quantity: 2,
+        asOf: "2025-03-02T07:10:00Z",
+        price: 375,
+      },
+      {
+        id: 13,
+        asset: "ETH",
+        quantity: 2,
+        asOf: "2025-03-03T15:10:00Z",
+        price: 320,
+      },
+      {
+        id: 1,
+        asset: "APPL",
+        quantity: 4,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 305,
+      },
+      {
+        id: 17,
+        asset: "MSFT",
+        quantity: 1,
+        asOf: "2025-03-01T09:00:00Z",
+        price: 260,
+      },
+      {
+        id: 9,
+        asset: "USD",
+        quantity: 800,
         asOf: "2025-03-02T06:30:00Z",
         price: 1,
       },
